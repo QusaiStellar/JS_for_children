@@ -1,0 +1,10 @@
+var secondsInAMinute = 60;
+var minutesInAnHour = 60;
+var secondsInAnHour = secondsInAMinute * minutesInAnHour;
+var hoursInADay = 24;
+var secondsInADay = secondsInAnHour * hoursInADay;
+var daysInAYear = 365;
+var secondsInAYear = daysInAYear * secondsInADay;
+var age = 25;
+var ageInSeconds = age * secondsInAYear;
+console.log(ageInSeconds);
