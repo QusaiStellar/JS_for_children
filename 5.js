@@ -1,4 +1,3 @@
 let myString = "эЙ, кАК деЛа?";
-let sliceString = myString.slice(1);
-let finishString = myString[0].toUpperCase() + sliceString.toLowerCase();
+let finishString = myString[0].toUpperCase() + myString.slice(1).toLowerCase();
 console.log(finishString);
