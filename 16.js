@@ -1,4 +1,4 @@
-var words = ["Слава Украине!", "Жыве беларусь", "Птн пнх",];
+var words = ["богдан", "этосамое", "какего",];
 var randomWord = words[Math.floor(Math.random() * words.length)];
 var finalWord = [];
 for (i = 0; i < randomWord.length; i++) {
