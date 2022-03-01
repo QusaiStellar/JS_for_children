@@ -9,10 +9,12 @@ function setupFinalWord(randomWord) {
    return;
 }
 function showFunctionProgress(finalWord) {
-   alert(`${finalWord.join(" ")} Осталось букв: ${remainingLetters}. Осталось попыток ${attempts}`);
+   alert(`Загаданное слово: ${finalWord.join(" ")}. 
+   \nОсталось отгадать ${remainingLetters} букв. 
+   \nОсталось ${attempts} попыток .`);
 }
 function getGuess() {
-   return prompt("Угадайте букву или нажмите Отмена для выхода из игры.");
+   return prompt("Угадайте букву или нажмите \"Отмена\" для выхода из игры.");
 }
 function updateGameState(guess, randomWord, finalWord) {
    for (j = 0; j < randomWord.length; j++) {
@@ -29,7 +31,7 @@ function updateGameState(guess, randomWord, finalWord) {
    attempts--;
 }
 function showFinalResult() {
-   alert(`Ваш окончательный результат: ${finalWord.join(" ")}.\nОсталось угадать ${remainingLetters} букв.\nБыло загадано слово: ${randomWord}`);
+   alert(`Ваш окончательный результат: ${finalWord.join(" ")}.\nОсталось отгадать ${remainingLetters} букв.\nБыло загадано слово: ${randomWord}`);
 }
 var randomWord = pickWord();
 var remainingLetters = randomWord.length;
@@ -37,7 +39,10 @@ var attempts = randomWord.length + 2;
 var finalWord = [];
 setupFinalWord(randomWord);
 console.log(finalWord);
-alert(`Добро пожаловать в игру Виселица!`);
+alert(`Добро пожаловать в игру Виселица!
+\nВам будет предложено угадать абсолютно случайное слово.
+\nНеобходимо, как в поле чудес, угадать слово.
+\nЗа каждую неверно отгаданную букву колличество попыток будет уменьшаться.`);
 while (remainingLetters > 0) {
    showFunctionProgress(finalWord);
    var guess = getGuess();
@@ -48,11 +53,14 @@ while (remainingLetters > 0) {
       alert(`Пожалуйста, введите хоть что-то!`);
    } else if (guess.length > 1) {
       if (guess.toLowerCase() === randomWord.toLowerCase()) {
-         alert(`Вы ввели слово: ${guess.toLowerCase()} и это правильный ответ.\nПоздравяем!`);
+         alert(`Вы ввели слово: ${guess.toLowerCase()} и это правильный ответ.
+         \nПоздравяем!`);
          break;
       } else {
          attempts--;
-         alert(`Вы ввели слово: ${guess} но оно неверно!!\nОсталось попыток: ${attempts}.\nОсталось букв: ${remainingLetters}`);
+         alert(`Вы ввели слово: ${guess}, но оно неверно!
+         \nОсталось ${attempts} попыток.
+         \nОсталось отгадать ${remainingLetters} букв.`);
       }
    } else if (guess.length == 1) {
       var correctGuesses = updateGameState(guess, randomWord, finalWord);
