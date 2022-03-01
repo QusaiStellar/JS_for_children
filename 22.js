@@ -1,6 +1,2 @@
-function setupFinalWord(randomWord) {
-   for (i = 0; i < randomWord.length; i++) {
-      finalWord[i] = "_";
-   }
-}
-
+var newHeadingText = prompt("Введите нью заголовок:");
+$("#main-heading").text(newHeadingText);
