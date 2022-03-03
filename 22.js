@@ -20,6 +20,5 @@ for (i = 0; i < 5; i++) {
       $("#main-heading").fadeOut(5000).fadeIn(5000);
    }
 }
-
 $("p").fadeTo(1000, 0.5);
 
