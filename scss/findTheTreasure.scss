@@ -1,0 +1,42 @@
+@import "_nullstyle.scss";
+body {
+   background-color: rgba(128, 128, 128, 0.637);
+}
+.container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   flex-direction: column;
+}
+.title {
+   font-size: 20px;
+   font-weight: 600;
+   padding: 20px;
+   text-transform: uppercase;
+   letter-spacing: 2px;
+}
+.map {
+}
+.tresure-map {
+   padding: 50px;
+   border-radius: 20px;
+   background: rgb(0, 18, 111);
+   background: radial-gradient(circle, rgba(0, 18, 111, 1) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(31, 190, 250, 0) 70%);
+   margin-bottom: 20px;
+   img {
+      display: block;
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+   }
+}
+.distance {
+   padding: 10px;
+   background-color: rgb(54, 54, 54);
+   border-radius: 5px;
+   font-size: 18px;
+   color: orange;
+   letter-spacing: 1.5px;
+}

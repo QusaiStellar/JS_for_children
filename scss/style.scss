@@ -1,0 +1,14 @@
+body {
+   background-color: rgb(168, 168, 168);
+}
+.heading {
+   display: inline-block;
+   font-size: 20px;
+   padding: 15px;
+   background-color: rgba(41, 37, 37, 0.801);
+   color: rgb(238, 165, 29);
+   border-radius: 10px;
+   &:hover {
+      background-color: black;
+   }
+}
