@@ -115,21 +115,24 @@ body {
   letter-spacing: 2px;
 }
 
-.tresure-map {
-  padding: 50px;
-  border-radius: 20px;
-  background: #00126f;
-  background: radial-gradient(circle, #00126f 0%, rgba(0, 0, 0, 0.8) 50%, rgba(31, 190, 250, 0) 70%);
+.clicks {
   margin-bottom: 20px;
+  font-size: 20px;
 }
 
-.tresure-map img {
+.map {
+  padding: 50px;
+  margin-bottom: 20px;
+  background: radial-gradient(circle, #00126f 0%, rgba(0, 0, 0, 0.8) 40%, rgba(31, 190, 250, 0) 55%);
+}
+
+.tresure-map {
   display: block;
-  max-width: 400px;
+  max-width: 800px;
   width: 100%;
   height: auto;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: fill;
+     object-fit: fill;
 }
 
 .distance {
@@ -139,4 +142,5 @@ body {
   font-size: 18px;
   color: orange;
   letter-spacing: 1.5px;
+  margin-bottom: 20px;
 }

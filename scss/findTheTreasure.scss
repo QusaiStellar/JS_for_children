@@ -16,21 +16,21 @@ body {
    text-transform: uppercase;
    letter-spacing: 2px;
 }
+.clicks {
+   margin-bottom: 20px;
+   font-size: 20px;
+}
 .map {
+   padding: 50px;
+   margin-bottom: 20px;
+   background: radial-gradient(circle, rgba(0, 18, 111, 1) 0%, rgba(0, 0, 0, 0.8) 40%, rgba(31, 190, 250, 0) 55%);
 }
 .tresure-map {
-   padding: 50px;
-   border-radius: 20px;
-   background: rgb(0, 18, 111);
-   background: radial-gradient(circle, rgba(0, 18, 111, 1) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(31, 190, 250, 0) 70%);
-   margin-bottom: 20px;
-   img {
-      display: block;
-      max-width: 400px;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-   }
+   display: block;
+   max-width: 800px;
+   width: 100%;
+   height: auto;
+   object-fit: fill;
 }
 .distance {
    padding: 10px;
@@ -39,4 +39,5 @@ body {
    font-size: 18px;
    color: orange;
    letter-spacing: 1.5px;
+   margin-bottom: 20px;
 }
