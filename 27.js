@@ -34,7 +34,7 @@ function getDistanceHint(distance) {
 var width = 800;
 var height = 500;
 var clicks = 0;
-var remainedClicks = 5;
+var remainedClicks = 50;
 var clicksText = $(".clicks").text();
 $(".clicks").text(clicksText + " " + remainedClicks);
 var target;
@@ -62,7 +62,7 @@ $(".tresure-map").click(function (event) {
    if (remainedClicks == 0) {
       updateTarget();
       console.log(target);
-      remainedClicks = 5;
+      remainedClicks = 50;
       alert("Ну всё, проиграл");
    }
 });

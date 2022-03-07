@@ -1,0 +1,22 @@
+@import "_nullstyle.scss";
+
+body {
+   background-color: rgba(128, 128, 128, 0.637);
+}
+.container {
+   max-width: 800px;
+   margin: 0 auto;
+   text-align: center;
+}
+
+.track {
+   margin: 0 auto;
+   position: relative;
+}
+.title {
+   font-size: 20px;
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 2px;
+   padding: 20px;
+}
