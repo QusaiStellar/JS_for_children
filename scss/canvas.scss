@@ -1,0 +1,15 @@
+@import "_nullstyle.scss";
+
+body {
+   background-color: rgba(128, 128, 128, 0.637);
+}
+.container {
+   max-width: 800px;
+   margin: 0 auto;
+   text-align: center;
+}
+
+#canvas {
+   margin-top: 20px;
+   width: 800px;
+}
