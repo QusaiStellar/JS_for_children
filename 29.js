@@ -50,15 +50,40 @@ function drawSnowman(x, y) {
    circle(x + 60, y + 80 + 60 + 30, 5, 1); //пуговица
    circle(x + 60, y + 80 + 60 - 30, 5, 1); //пуговица
 }
-
 drawSnowman(350, 10);
+var points = [[50, 50], [50, 100], [100, 100], [100, 50], [50, 50]];
+var mysteryPoints = [[50, 50], [50, 100], [100, 100], [100, 50], [70, 90], [100, 90], [50, 50]];
+function drawPoints(pointsArray) {
+   ctx.beginPath();
+   ctx.moveTo(pointsArray[0][0], pointsArray[0][1]);
+   for (i = 1; i < pointsArray.length; i++) {
+      ctx.lineTo(pointsArray[i][0], pointsArray[i][1]);
+   };
+   ctx.stroke();
+}
+drawPoints(mysteryPoints);
+$("#canvas").mousemove(function (event) {
+   var canvasHtml = $("#canvas");
+   var pos = canvasHtml.position();
 
+   circle(event.pageX - pos.left, event.pageY - pos.top - 20, 3);
+
+   console.log(event.pageX, event.pageY);
+   console.log(pos.left, pos.top);
+   console.log(pos);
+});
 /*
-circle(300, 400, 60); //тело
-circle(300, 310, 5, 1, "orange"); //нос
-circle(280, 290, 5, 1, "black"); //глаз левый 
-circle(320, 290, 5, 1); //глаз правый
-circle(300, 400, 5, 1); //пуговица
-circle(300, 430, 5, 1); //пуговица
-circle(300, 370, 5, 1); //пуговица
+$(document).ready(function () {
+   $("#canvas").mousemove(function (event) {
+      var pos = $(this).offset();
+      var canvasLeft = pos.left;
+      var canvasTop = pos.top;
+      var mouseX = event.pageX - canvasLeft;
+      var mouseY = event.pageY - canvasTop;
+      circle(event.pageX, event.pageY, 3);
+
+      console.log(mouseX, mouseY);
+   })
+});
 */
+//alert(points[1][1]);

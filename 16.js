@@ -41,7 +41,12 @@ guessTheLetter: while (remainingLetters > 0) {
    }
    console.log(guess);
 }
-
+/*========================================================*/
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+ctx.lineWidth = 5;
+ctx.strokeRect(0, 0, 50, 50);
+/*========================================================*/
 alert(`Окончательный результат: ${finalWord.toLowerCase().join(" ")}. Осталось букв: ${remainingLetters}`);
 alert(`Отлично! Было загадано слово ${randomWord}`);
 
