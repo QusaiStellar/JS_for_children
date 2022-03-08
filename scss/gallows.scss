@@ -1,0 +1,67 @@
+@import "_nullstyle.scss";
+
+body {
+   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+   background-color: rgba(128, 128, 128, 0.637);
+}
+.container {
+   max-width: 800px;
+   margin: 0 auto;
+   text-align: center;
+}
+
+.title {
+   font-size: 18px;
+   text-transform: uppercase;
+   margin-top: 20px;
+   font-weight: 600;
+   margin-bottom: 20px;
+}
+.question {
+   font-size: 16px;
+   letter-spacing: 1.2px;
+   & p {
+      margin-bottom: 10px;
+      &:last-child {
+         margin-bottom: 0;
+      }
+   }
+}
+.result {
+   display: flex;
+}
+#word,
+#human {
+   display: inline-block;
+   flex: 0 1 50%;
+}
+
+.input {
+   display: block;
+   margin: 0 auto;
+   padding: 10px;
+   margin-bottom: 20px;
+}
+.btn {
+   font-size: 16px;
+   letter-spacing: 1.5px;
+   margin-right: 10px;
+   padding: 10px;
+   border-radius: 5px;
+   color: rgb(202, 199, 199);
+   background-color: rgb(121, 8, 8);
+   border: solid 2px rgb(121, 8, 8);
+   &:hover {
+      box-sizing: border-box;
+      background-color: rgba(128, 128, 128, 0.637);
+      color: black;
+      border: solid 2px rgb(121, 8, 8);
+   }
+}
+.btn-start {
+   margin-bottom: 20px;
+}
+.btn-send {
+}
+.btn-again {
+}

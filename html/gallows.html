@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" type="text/css" href="../css/gallows.css">
+   <title>Gallows</title>
+</head>
+
+<body>
+   <main class="container">
+      <div class="title">Добро пожаловать в игру Gallows!</div>
+      <div class="question">
+         <p>Вам необходимо отгадать слово по одной букве за отведенное колличество попыток.</p>
+         <p>В случае если в слове не окажется названной буквы вы окажетесь на шаг ближе к виселице.</p>
+         <p>GOOD LUCK!</p>
+      </div>
+      <div class="result"></div>
+      <div class="drawing">
+         <canvas id="word" height="300"></canvas>
+         <canvas id="human" height="300"></canvas>
+      </div>
+
+      <button class="btn btn-start">Начать игру</button>
+      <input class="input" type="text">
+      <div class="btns">
+         <button class="btn btn-send">Отправить</button>
+         <button class="btn btn-again">Заново</button>
+      </div>
+   </main>
+
+
+   <script src="https://code.jquery.com/jquery-3.6.0.js"> </script>
+   <script src="../16.js"> </script>
+</body>
+
+</html>
