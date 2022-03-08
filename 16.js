@@ -23,26 +23,26 @@ drawHuman(100, 100);
 var canvasWord = document.getElementById('word');
 var ctxWord = canvasWord.getContext('2d');
 function drawWord(x, y) {
-   ctxHuman.fillStyle = "Black";
-   ctxHuman.strokeStyle = "Black";
-   ctxHuman.lineWidth = 5;
-   ctxHuman.strokeRect(50 + x, 0 + y, 20, 20);
-   ctxHuman.beginPath();
-   ctxHuman.moveTo(60 + x, 20 + y);
-   ctxHuman.lineTo(60 + x, 80 + y); //тело
-   ctxHuman.moveTo(60 + x, 40 + y);
-   ctxHuman.lineTo(40 + x, 30 + y); //левая рука
-   ctxHuman.moveTo(60 + x, 40 + y);
-   ctxHuman.lineTo(80 + x, 30 + y); //права рука
-   ctxHuman.moveTo(60 + x, 80 + y);
-   ctxHuman.lineTo(30 + x, 120 + y); //левая нога
-   ctxHuman.moveTo(60 + x, 80 + y);
-   ctxHuman.lineTo(90 + x, 120 + y); //правая нога
-   ctxHumanctx.stroke();
+   ctxWord.fillStyle = "Black";
+   ctxWord.strokeStyle = "Black";
+   ctxWord.lineWidth = 5;
+   ctxWord.beginPath();
+   ctxWord.moveTo(x, y);
+   ctxWord.lineTo(x + 20, y); //тело
+   ctxWord.moveTo(x + 40, y);
+   ctxWord.lineTo(x + 60, y); //левая рука
+   ctxWord.moveTo(x + 80, y);
+   ctxWord.lineTo(x + 100, y); //права рука
+   ctxWord.moveTo(x + 120, y);
+   ctxWord.lineTo(x + 140, y); //левая нога
+   ctxWord.moveTo(x + 160, y);
+   ctxWord.lineTo(x + 180, y); //правая нога
+   ctxWord.stroke();
 }
+drawWord(100, 200);
 
 
-
+let arr_ru = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'э', 'ю', 'я'];
 var words = ["богдан", "этосамое", "какего",];
 var randomWord = words[Math.floor(Math.random() * words.length)];
 var finalWord = [];
@@ -51,6 +51,8 @@ for (i = 0; i < randomWord.length; i++) {
 }
 var remainingLetters = randomWord.length;
 var attempts = randomWord.length;
+var mistakes = 0;
+var inputLetter = document.getElementsByClassName('input').value;
 guessTheLetter: while (remainingLetters > 0) {
    //alert(`${finalWord.join(" ")} Осталось букв: ${remainingLetters}. Осталось попыток ${attempts}`);
    //var guess = prompt("Угадайте букву или нажмите Отмена для выхода из игры.");
@@ -64,6 +66,7 @@ guessTheLetter: while (remainingLetters > 0) {
          break;
       } else {
          attempts--;
+         mistakes++;
          //alert(`Вы ввели слово: ${guess} но оно неверно!! Осталось попыток: ${attempts}. Осталось букв: ${remainingLetters}`);
       }
    } else if (guess.length == 1) {
@@ -79,6 +82,7 @@ guessTheLetter: while (remainingLetters > 0) {
          }
       }
       attempts--;
+      mistakes++;
    }
    if (attempts == false) {
       //alert(`Увы, но вы исчерпали все свои попытки.`);
@@ -86,12 +90,7 @@ guessTheLetter: while (remainingLetters > 0) {
    }
    console.log(guess);
 }
-/*========================================================*/
-var canvas = document.getElementById('canvas');
-var ctx = canvas.getContext('2d');
-ctx.lineWidth = 5;
-ctx.strokeRect(0, 0, 50, 50);
-/*========================================================*/
+
 //alert(`Окончательный результат: ${finalWord.toLowerCase().join(" ")}. Осталось букв: ${remainingLetters}`);
 //alert(`Отлично! Было загадано слово ${randomWord}`);
 console.log(finalWord);
