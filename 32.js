@@ -21,6 +21,14 @@ class Ball {
       this.x += this.xSpeed;
       this.y += this.ySpeed;
    }
+   checkCollision() {
+      if (this.x < 0 || this.x > 200) {
+         this.xSpeed = -this.xSpeed;
+      }
+      if (this.y < 0 || this.y > 200) {
+         this.ySpeed = -this.ySpeed;
+      }
+   }
 };
 const firstBall = new Ball();
 setInterval(function () {
