@@ -1,14 +1,49 @@
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+function circle(x, y, radius, fillCircle) {
+   ctx.beginPath();
+   ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+   if (fillCircle) {
+      ctx.fill();
+   } else {
+      ctx.stroke();
+   }
+};
+function drawBee(x, y) {
+   ctx.lineWidth = 2;
+   ctx.strokeStyle = "Black";
+   ctx.fillStyle = "Gold";
 
-var position = 0;
+   circle(x, y, 8, true);
+   circle(x, y, 8, false);
+   circle(x - 5, y - 11, 5, false);
+   circle(x + 5, y - 11, 5, false);
+   circle(x - 2, y - 1, 2, false);
+   circle(x + 2, y - 1, 2, false);
+};
+function update(coordinate) {
+   var offset = Math.random() * 4 - 2;
+   coordinate += offset;
 
+   if (coordinate > 200) {
+      coordinate = 200;
+   }
+   if (coordinate < 0) {
+      coordinate = 0;
+   }
+
+   return coordinate;
+};
 setInterval(function () {
    ctx.clearRect(0, 0, 200, 200);
-   ctx.fillRect(position, position, 20, 20);
 
-   position++;
-   if (position > 200) {
-      position = 0;
-   }
+   drawBee(x, y);
+   x = update(x);
+   y = update(y);
+
+   ctx.strokeRect(0, 0, 200, 200);
 }, 30);
+
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var x = 100;
+var y = 100;
+
