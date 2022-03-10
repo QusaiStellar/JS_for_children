@@ -26,7 +26,7 @@ class Ball {
       this.ySpeed = random(10);
    }
    draw() {
-      circle(this.x, this.y, 5, true);
+      circle(this.x, this.y, radiusBall, true);
       ctx.fillStyle = getRandomColor();
    }
    move() {
@@ -34,10 +34,10 @@ class Ball {
       this.y += this.ySpeed;
    }
    checkCollision() {
-      if (this.x < 0 || this.x > canvasWidth) {
+      if (this.x < radiusBall || this.x > (canvasWidth - radiusBall)) {
          this.xSpeed = -this.xSpeed;
       }
-      if (this.y < 0 || this.y > canvasHeight) {
+      if (this.y < radiusBall || this.y > (canvasHeight - radiusBall)) {
          this.ySpeed = -this.ySpeed;
       }
    }
@@ -49,6 +49,7 @@ function startBall(ball) {
    ball.checkCollision();
 };
 
+var radiusBall = 5;
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
@@ -59,6 +60,7 @@ var needMoreBalls = [];
 for (i = 0; i < 10; i++) {
    needMoreBalls[i] = new Ball();
 };
+
 setInterval(function () {
    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
    for (i = 0; i < needMoreBalls.length; i++) {
