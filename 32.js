@@ -1,3 +1,11 @@
+function getRandomColor() {
+   var letters = '0123456789ABCDEF';
+   var color = '#';
+   for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+   }
+   return color;
+};
 function circle(x, y, radius, fillCircle) {
    ctx.beginPath();
    ctx.arc(x, y, radius, 0, Math.PI * 2, false);
@@ -9,16 +17,17 @@ function circle(x, y, radius, fillCircle) {
 };
 function random(num) {
    return Math.floor(Math.random() * num);
-}
+};
 class Ball {
    constructor() {
-      this.x = random(canvasWidth / 2);
-      this.y = random(canvasHeight / 2);
-      this.xSpeed = random(-5);
-      this.ySpeed = random(5);
+      this.x = random(canvasWidth);
+      this.y = random(canvasHeight);
+      this.xSpeed = random(-10);
+      this.ySpeed = random(10);
    }
    draw() {
       circle(this.x, this.y, 5, true);
+      ctx.fillStyle = getRandomColor();
    }
    move() {
       this.x += this.xSpeed;
@@ -32,12 +41,13 @@ class Ball {
          this.ySpeed = -this.ySpeed;
       }
    }
+
 };
 function startBall(ball) {
    ball.draw();
    ball.move();
    ball.checkCollision();
-}
+};
 
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
@@ -46,24 +56,13 @@ var canvasWidth = canvas.width;
 var canvasHeight = canvas.height;
 var needMoreBalls = [];
 
-const firstBall = new Ball();
-const secondBall = new Ball();
-const thirdBall = new Ball();
-const fourthBall = new Ball();
-const fifthBall = new Ball();
-const sixthBall = new Ball();
-
-for (i = 0; i < 6; i++) {
+for (i = 0; i < 10; i++) {
    needMoreBalls[i] = new Ball();
-}
-console.log(needMoreBalls);
-
+};
 setInterval(function () {
    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
    for (i = 0; i < needMoreBalls.length; i++) {
-      needMoreBalls[2].draw().move();
+      startBall(needMoreBalls[i]);
    }
-
-
    ctx.strokeRect(0, 0, canvasWidth, canvasHeight);
 }, 20);
