@@ -51,6 +51,7 @@ class Ball {
       this.xSpeed = 1;
       this.ySpeed = 0;
       this.speed = 2;
+
    }
    draw() {
       circle(this.x, this.y, radiusBall, true);
@@ -98,18 +99,16 @@ class Ball {
    }
 
 };
-
+9
 var ball = new Ball();
-
 
 $("body").keydown(function (event) {
    var direction = keyActions[event.keyCode];
-   ball.setDirection(direction);
    var speed = speeds[event.keyCode];
-   console.log(speed);
-   console.log(typeof speed);
-
-   ball.speed = speed;
+   ball.setDirection(direction);
+   if (speed !== undefined) {
+      ball.speed = speed;
+   }
 });
 
 setInterval(function () {
