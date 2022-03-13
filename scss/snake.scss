@@ -1,5 +1,14 @@
 @import "_nullstyle.scss";
 
-.snake {
-   max-width: 100%;
+.container {
+   max-width: 1300px;
+   margin: 0 auto;
+}
+#snake {
+   max-width: 1300px;
+   height: 700px;
+}
+
+#canvas {
+   background: #222222;
 }
