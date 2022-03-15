@@ -28,15 +28,15 @@ function drawWord(x, y) {
    ctxWord.lineWidth = 5;
    ctxWord.beginPath();
    ctxWord.moveTo(x, y);
-   ctxWord.lineTo(x + 20, y); //тело
+   ctxWord.lineTo(x + 20, y); 
    ctxWord.moveTo(x + 40, y);
-   ctxWord.lineTo(x + 60, y); //левая рука
+   ctxWord.lineTo(x + 60, y); 
    ctxWord.moveTo(x + 80, y);
-   ctxWord.lineTo(x + 100, y); //права рука
+   ctxWord.lineTo(x + 100, y); 
    ctxWord.moveTo(x + 120, y);
-   ctxWord.lineTo(x + 140, y); //левая нога
+   ctxWord.lineTo(x + 140, y); 
    ctxWord.moveTo(x + 160, y);
-   ctxWord.lineTo(x + 180, y); //правая нога
+   ctxWord.lineTo(x + 180, y); 
    ctxWord.stroke();
 }
 drawWord(100, 200);

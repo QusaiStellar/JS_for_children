@@ -25,17 +25,30 @@
    };
 
    function drawScore() {
-      ctx.textBaseLine = "top";
-      ctx.fillText("Hellp", 20, 20);
+      ctx.font = "20px Courier";
+      ctx.fillStyle = "Black";
+      ctx.textAlign = "left";
+      ctx.fillText("Счет: " + score, blockSize, blockSize + 15);
+   }
+
+   function gameOver(requestId) {
+      cancelAnimationFrame(requestId);
+      ctx.font = "60px Courier";
+      ctx.fillStyle = "Black";
+      ctx.textAlign = "center";
+      ctx.textBaseLine = "middle";
+      ctx.fillText("Конец игры", width / 2, height / 2);
    }
 
    function loop() {
       canvas.width |= 0;
       drawBorder();
       drawScore();
-      requestAnimationFrame(loop);
+      let requestId = requestAnimationFrame(loop);
+      //gameOver(requestId);
    }
    loop();
+
 
    window.addEventListener(`resize`, init);
 

@@ -60,9 +60,17 @@ var needMoreBalls = [];
 for (i = 0; i < 10; i++) {
    needMoreBalls[i] = new Ball();
 };
+function drawScore() {
+   ctx.font = "20px Courier"
+   ctx.textBaseLine = 'bottom';
+   ctx.fillStyle = "Black";
+   ctx.textAlign = "left";
+   ctx.fillText("Счет: ", 10, 10);
+}
 
 setInterval(function () {
    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+   drawScore();
    for (i = 0; i < needMoreBalls.length; i++) {
       startBall(needMoreBalls[i]);
    }
