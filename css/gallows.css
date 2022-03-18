@@ -98,7 +98,7 @@ span {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   text-align: center;
 }
@@ -127,10 +127,6 @@ span {
   margin-bottom: 0;
 }
 
-.notification {
-  margin-bottom: 20px;
-}
-
 .result {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -153,9 +149,13 @@ span {
 
 #first-canvas,
 #second-canvas {
+  max-height: 150px;
+}
+
+#second-canvas {
   -webkit-box-flex: 0;
-      -ms-flex: 0 0 50%;
-          flex: 0 0 50%;
+      -ms-flex: 0 1 50%;
+          flex: 0 1 50%;
 }
 
 .input {

@@ -8,13 +8,15 @@ var ctxWord = canvasWord.getContext('2d');
       canvasHuman.height = document.getElementById('first-canvas').offsetHeight;
       canvasWord.width = document.getElementById('second-canvas').offsetWidth;
       canvasWord.height = document.getElementById('second-canvas').offsetHeight;
-   }
+   };
    init();
    window.addEventListener(`resize`, init);
-
 })();
 var words = ["богдан", "этосамое", "какего",];
 var randomWord = words[Math.floor(Math.random() * words.length)];
+function getRandomWord() {
+   randomWord = words[Math.floor(Math.random() * words.length)];
+}
 var finalWord = [];
 for (i = 0; i < randomWord.length; i++) {
    finalWord[i] = "_";
@@ -120,6 +122,21 @@ function playGame() {
    $(".mistakes").text(mistakes);
 
    drawHuman(170, 20);
+}
+
+function refresh() {
+   canvasHuman.width |= 0;
+   canvasWord.width |= 0;
+   mistakes = 0;
+   getRandomWord();
+   remainingLetters = randomWord.length;
+   for (i = 0; i < randomWord.length; i++) {
+      finalWord[i] = "_";
+   };
+   $(".remaining-letters").text(remainingLetters);
+   $(".mistakes").text(mistakes);
+   drawWord(20, 100);
+
 }
 
 

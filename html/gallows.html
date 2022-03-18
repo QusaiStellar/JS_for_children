@@ -11,7 +11,7 @@
 
 <body>
    <main class="container">
-      <div class="title">Добро пожаловать в игру Gallows!</div>
+      <div class="title">Добро пожаловать в игру <span>Gallows!</span> </div>
       <div class="question">
          <p>Вам необходимо отгадать слово по одной букве. Можно допустить 6 ошибок.</p>
          <p>В случае если в слове не окажется названной буквы вы окажетесь на шаг ближе к виселице.</p>
@@ -24,7 +24,7 @@
       </div>
       <input class="input" type="text" id="inp_1" placeholder="Введите букву">
       <div class="btns">
-         <a class="btn btn-again" onclick='window.location.reload()'>Заново</a>
+         <a class="btn btn-again" onclick='refresh()'>Заново</a>
          <a onclick="playGame()" class="btn btn-send">Отправить</a>
       </div>
       <div class="result">
