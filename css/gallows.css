@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@600;700&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -87,8 +88,13 @@ h6 {
 }
 
 body {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  background-color: rgba(128, 128, 128, 0.637);
+  font-family: "Manrope", sans-serif;
+  background-color: #6e5f65;
+  color: #e6dfdf;
+}
+
+span {
+  color: #eb523b;
 }
 
 .container {
@@ -101,13 +107,15 @@ body {
   font-size: 18px;
   text-transform: uppercase;
   margin-top: 20px;
-  font-weight: 600;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
 .question {
   font-size: 16px;
   letter-spacing: 1.2px;
+  margin-bottom: 20px;
+  font-weight: 500;
 }
 
 .question p {
@@ -119,6 +127,18 @@ body {
 }
 
 .result {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.drawing {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -145,17 +165,8 @@ body {
   margin-right: 10px;
   padding: 10px;
   border-radius: 5px;
-  color: #cac7c7;
-  background-color: #790808;
-  border: solid 2px #790808;
-}
-
-.btn:hover {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  background-color: rgba(128, 128, 128, 0.637);
-  color: black;
-  border: solid 2px #790808;
+  background-color: #d43b2a;
+  color: #e6dfdf;
 }
 
 .btn-start {

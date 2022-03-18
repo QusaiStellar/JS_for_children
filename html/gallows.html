@@ -17,7 +17,11 @@
          <p>В случае если в слове не окажется названной буквы вы окажетесь на шаг ближе к виселице.</p>
          <p>GOOD LUCK!</p>
       </div>
-      <div class="result"></div>
+      <div class="result">
+         <p>Осталось угадать <span class="remaining-letters">0</span> букв.</p>
+         <p>Совершено <span class="mistakes">0</span> ошибок.</p>
+
+      </div>
       <div class="drawing">
          <canvas id="word" height="300"></canvas>
          <canvas id="human" height="300"></canvas>
@@ -26,10 +30,11 @@
          <button class="btn btn-start">Начать игру</button>
          <button class="btn btn-again">Заново</button>
       </div>
-      <form action="../16.js">
-         <input class="input" type="text">
-         <button class="btn btn-send" type="submit">Отправить</button>
-      </form>
+      <label for="inp_1">Введите букву</label>
+      <input class="input" type="text" id="inp_1">
+      <button onclick="playGame()" class="btn btn-send">Отправить</button>
+      <div class="notification">
+      </div>
 
    </main>
 

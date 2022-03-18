@@ -1,5 +1,16 @@
 var canvasHuman = document.getElementById('human');
 var ctxHuman = canvasHuman.getContext('2d');
+var canvasWord = document.getElementById('word');
+var ctxWord = canvasWord.getContext('2d');
+var words = ["богдан", "этосамое", "какего",];
+var randomWord = words[Math.floor(Math.random() * words.length)];
+var finalWord = [];
+for (i = 0; i < randomWord.length; i++) {
+   finalWord[i] = "_";
+};
+var remainingLetters = randomWord.length;
+var attempts = randomWord.length;
+var mistakes = 0;
 function drawHuman(x, y) {
    ctxHuman.fillStyle = "Black";
    ctxHuman.strokeStyle = "Black";
@@ -17,81 +28,72 @@ function drawHuman(x, y) {
    ctxHuman.moveTo(60 + x, 80 + y);
    ctxHuman.lineTo(90 + x, 120 + y); //правая нога
    ctxHuman.stroke();
-}
-drawHuman(100, 100);
 
-var canvasWord = document.getElementById('word');
-var ctxWord = canvasWord.getContext('2d');
+};
 function drawWord(x, y) {
-   ctxWord.fillStyle = "Black";
-   ctxWord.strokeStyle = "Black";
-   ctxWord.lineWidth = 5;
-   ctxWord.beginPath();
-   ctxWord.moveTo(x, y);
-   ctxWord.lineTo(x + 20, y); 
-   ctxWord.moveTo(x + 40, y);
-   ctxWord.lineTo(x + 60, y); 
-   ctxWord.moveTo(x + 80, y);
-   ctxWord.lineTo(x + 100, y); 
-   ctxWord.moveTo(x + 120, y);
-   ctxWord.lineTo(x + 140, y); 
-   ctxWord.moveTo(x + 160, y);
-   ctxWord.lineTo(x + 180, y); 
-   ctxWord.stroke();
-}
-drawWord(100, 200);
-
-console.log();
-
-let arr_ru = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'э', 'ю', 'я'];
-var words = ["богдан", "этосамое", "какего",];
-var randomWord = words[Math.floor(Math.random() * words.length)];
-var finalWord = [];
-for (i = 0; i < randomWord.length; i++) {
-   finalWord[i] = "_";
-}
-var remainingLetters = randomWord.length;
-var attempts = randomWord.length;
-var mistakes = 0;
-var inputLetter = document.getElementsByClassName('input').value;
-guessTheLetter: while (remainingLetters > 0) {
-   //alert(`${finalWord.join(" ")} Осталось букв: ${remainingLetters}. Осталось попыток ${attempts}`);
-   //var guess = prompt("Угадайте букву или нажмите Отмена для выхода из игры.");
-   if (guess === null) {
-      break;
-   } else if (guess === "") {
-      //alert(`Пожалуйста, введите хоть что-то!`);
-   } else if (guess.length > 1) {
-      if (guess.toLowerCase() === randomWord.toLowerCase()) {
-         //alert(`Вы ввели слово: ${guess.toLowerCase()} и это правильный ответ. Поздравяем!`);
-         break;
-      } else {
-         attempts--;
-         mistakes++;
-         //alert(`Вы ввели слово: ${guess} но оно неверно!! Осталось попыток: ${attempts}. Осталось букв: ${remainingLetters}`);
-      }
-   } else if (guess.length == 1) {
-      for (j = 0; j < randomWord.length; j++) {
-         if (randomWord[j].toLowerCase() === guess.toLowerCase()) {
-            if (finalWord[j] === "_") {
-               finalWord[j] = guess;
-               remainingLetters--;
-            } else {
-               //alert(`Вы уже угадали букву: ${guess}`);
-               continue guessTheLetter;
+   ctxWord.font = "30px Courier";
+   ctxWord.fillStyle = "#E6E0DF";
+   ctxWord.textAlign = "left";
+   ctxWord.textBaseLine = "left";
+   ctxWord.fillText(finalWord.join(" "), x, y);
+};
+function getLetter() {
+   let letter = document.getElementById('inp_1').value;
+   document.getElementById("inp_1").value = "";
+   return letter;
+};
+$(".remaining-letters").text(remainingLetters);
+$(".mistakes").text(mistakes);
+drawHuman(100, 100);
+drawWord(20, 200);
+$("body").keydown(function (event) {
+   if (event.keyCode == 13) {
+      $(".btn-send").click();
+   }
+});
+function playGame() {
+   let letter = getLetter();
+   console.log(letter);
+   console.log(typeof letter);
+   letterRotation: if (mistakes < 6) {
+      if (letter === null) {
+         return;
+      } else if (letter === "") {
+         $(".notification").text(`Пожалуйста, введите хоть что-то!`);
+      } else if (letter.length > 1) {
+         if (letter.toLowerCase() === randomWord.toLowerCase()) {
+            for (j = 0; j < randomWord.length; j++) {
+               finalWord[j] = randomWord[j];
+               drawWord(20, 200);
+            }
+            $(".notification").text(`Вы ввели слово: ${letter}, и это правильный ответ. Поздравяем!`);
+         } else {
+            mistakes++;
+            $(".notification").text(`Вы ввели слово: ${letter}, но оно неверно!`);
+         }
+      } else if (letter.length == 1) {
+         for (j = 0; j < randomWord.length; j++) {
+            if (randomWord[j].toLowerCase() === letter.toLowerCase()) {
+               if (finalWord[j] === "_") {
+                  finalWord[j] = letter;
+                  drawWord(20, 200);
+                  remainingLetters--;
+                  break letterRotation;
+               } else {
+                  $(".notification").text(`Вы уже угадали букву: ${letter}`);
+                  break letterRotation;
+               }
             }
          }
+         mistakes++;
       }
-      attempts--;
-      mistakes++;
+      if (mistakes == 6) {
+         $(".notification").text(`Вы совершили слишком много ошибок, сожалею :(`);
+      }
    }
-   if (attempts == false) {
-      //alert(`Увы, но вы исчерпали все свои попытки.`);
-      break;
-   }
-   console.log(guess);
+
+   $(".remaining-letters").text(remainingLetters);
+   $(".mistakes").text(mistakes);
 }
 
-//alert(`Окончательный результат: ${finalWord.toLowerCase().join(" ")}. Осталось букв: ${remainingLetters}`);
-//alert(`Отлично! Было загадано слово ${randomWord}`);
-console.log(finalWord);
+
