@@ -13,28 +13,26 @@
    <main class="container">
       <div class="title">Добро пожаловать в игру Gallows!</div>
       <div class="question">
-         <p>Вам необходимо отгадать слово по одной букве за отведенное колличество попыток.</p>
+         <p>Вам необходимо отгадать слово по одной букве. Можно допустить 6 ошибок.</p>
          <p>В случае если в слове не окажется названной буквы вы окажетесь на шаг ближе к виселице.</p>
          <p>GOOD LUCK!</p>
+      </div>
+
+      <div class="drawing">
+         <div id="first-canvas"><canvas id="word"></canvas></div>
+         <div id="second-canvas"><canvas id="human"></canvas></div>
+      </div>
+      <input class="input" type="text" id="inp_1" placeholder="Введите букву">
+      <div class="btns">
+         <a class="btn btn-again" onclick='window.location.reload()'>Заново</a>
+         <a onclick="playGame()" class="btn btn-send">Отправить</a>
       </div>
       <div class="result">
          <p>Осталось угадать <span class="remaining-letters">0</span> букв.</p>
          <p>Совершено <span class="mistakes">0</span> ошибок.</p>
 
       </div>
-      <div class="drawing">
-         <canvas id="word" height="300"></canvas>
-         <canvas id="human" height="300"></canvas>
-      </div>
-      <div class="btns">
-         <button class="btn btn-start">Начать игру</button>
-         <button class="btn btn-again">Заново</button>
-      </div>
-      <label for="inp_1">Введите букву</label>
-      <input class="input" type="text" id="inp_1">
-      <button onclick="playGame()" class="btn btn-send">Отправить</button>
-      <div class="notification">
-      </div>
+      <div class="notification"> </div>
 
    </main>
 

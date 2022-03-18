@@ -2,6 +2,17 @@ var canvasHuman = document.getElementById('human');
 var ctxHuman = canvasHuman.getContext('2d');
 var canvasWord = document.getElementById('word');
 var ctxWord = canvasWord.getContext('2d');
+(() => {
+   function init() {
+      canvasHuman.width = document.getElementById('first-canvas').offsetWidth;
+      canvasHuman.height = document.getElementById('first-canvas').offsetHeight;
+      canvasWord.width = document.getElementById('second-canvas').offsetWidth;
+      canvasWord.height = document.getElementById('second-canvas').offsetHeight;
+   }
+   init();
+   window.addEventListener(`resize`, init);
+
+})();
 var words = ["богдан", "этосамое", "какего",];
 var randomWord = words[Math.floor(Math.random() * words.length)];
 var finalWord = [];
@@ -15,18 +26,26 @@ function drawHuman(x, y) {
    ctxHuman.fillStyle = "Black";
    ctxHuman.strokeStyle = "Black";
    ctxHuman.lineWidth = 5;
-   ctxHuman.strokeRect(50 + x, 0 + y, 20, 20);
+   if (mistakes == 1) {
+      ctxHuman.strokeRect(50 + x, 0 + y, 20, 20);
+   }
    ctxHuman.beginPath();
-   ctxHuman.moveTo(60 + x, 20 + y);
-   ctxHuman.lineTo(60 + x, 80 + y); //тело
-   ctxHuman.moveTo(60 + x, 40 + y);
-   ctxHuman.lineTo(40 + x, 30 + y); //левая рука
-   ctxHuman.moveTo(60 + x, 40 + y);
-   ctxHuman.lineTo(80 + x, 30 + y); //права рука
-   ctxHuman.moveTo(60 + x, 80 + y);
-   ctxHuman.lineTo(30 + x, 120 + y); //левая нога
-   ctxHuman.moveTo(60 + x, 80 + y);
-   ctxHuman.lineTo(90 + x, 120 + y); //правая нога
+   if (mistakes == 2) {
+      ctxHuman.moveTo(60 + x, 20 + y);
+      ctxHuman.lineTo(60 + x, 80 + y); //тело 
+   } else if (mistakes == 3) {
+      ctxHuman.moveTo(60 + x, 40 + y);
+      ctxHuman.lineTo(40 + x, 30 + y); //левая рука
+   } else if (mistakes == 4) {
+      ctxHuman.moveTo(60 + x, 40 + y);
+      ctxHuman.lineTo(80 + x, 30 + y); //права рука
+   } else if (mistakes == 5) {
+      ctxHuman.moveTo(60 + x, 80 + y);
+      ctxHuman.lineTo(30 + x, 120 + y); //левая нога
+   } else if (mistakes == 6) {
+      ctxHuman.moveTo(60 + x, 80 + y);
+      ctxHuman.lineTo(90 + x, 120 + y); //правая нога
+   }
    ctxHuman.stroke();
 
 };
@@ -44,8 +63,7 @@ function getLetter() {
 };
 $(".remaining-letters").text(remainingLetters);
 $(".mistakes").text(mistakes);
-drawHuman(100, 100);
-drawWord(20, 200);
+drawWord(20, 100);
 $("body").keydown(function (event) {
    if (event.keyCode == 13) {
       $(".btn-send").click();
@@ -53,9 +71,13 @@ $("body").keydown(function (event) {
 });
 function playGame() {
    let letter = getLetter();
-   console.log(letter);
-   console.log(typeof letter);
-   letterRotation: if (mistakes < 6) {
+   let stringfinalWord = finalWord.join("");
+   if (randomWord == stringfinalWord) {
+      $(".notification").text(`Вы уже угадали слово: ${randomWord}. Поздравяем! Нажмите кнопку "Заново" если хотите повторить.`);
+      return;
+   };
+
+   letterRotation: if (mistakes < 6 && remainingLetters > 0) {
       if (letter === null) {
          return;
       } else if (letter === "") {
@@ -67,6 +89,7 @@ function playGame() {
                drawWord(20, 200);
             }
             $(".notification").text(`Вы ввели слово: ${letter}, и это правильный ответ. Поздравяем!`);
+            drawWord(20, 100);
          } else {
             mistakes++;
             $(".notification").text(`Вы ввели слово: ${letter}, но оно неверно!`);
@@ -76,24 +99,27 @@ function playGame() {
             if (randomWord[j].toLowerCase() === letter.toLowerCase()) {
                if (finalWord[j] === "_") {
                   finalWord[j] = letter;
-                  drawWord(20, 200);
+                  drawWord(20, 100);
                   remainingLetters--;
                   break letterRotation;
                } else {
-                  $(".notification").text(`Вы уже угадали букву: ${letter}`);
+                  $(".notification").text(`Вы уже угадали букву: ${letter}.`);
                   break letterRotation;
                }
             }
          }
          mistakes++;
       }
-      if (mistakes == 6) {
-         $(".notification").text(`Вы совершили слишком много ошибок, сожалею :(`);
-      }
    }
+
+   if (mistakes == 7) {
+      $(".notification").text(`Вы совершили слишком много ошибок, сожалею :(`);
+   };
 
    $(".remaining-letters").text(remainingLetters);
    $(".mistakes").text(mistakes);
+
+   drawHuman(170, 20);
 }
 
 
