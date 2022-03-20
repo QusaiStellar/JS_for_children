@@ -86,17 +86,20 @@ h6 {
   font-weight: inherit;
 }
 
+body {
+  background-color: #907551;
+}
+
 .container {
   max-width: 1300px;
   margin: 0 auto;
-  background-color: rebeccapurple;
 }
 
 #snake {
   max-width: 100%;
-  margin: 0 20px;
+  margin: auto 20px;
 }
 
 #canvas {
-  background: #8b4343;
+  background: #bda789;
 }
