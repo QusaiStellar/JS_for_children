@@ -12,7 +12,7 @@ var ctxWord = canvasWord.getContext('2d');
    init();
    window.addEventListener(`resize`, init);
 })();
-var words = ["богдан", "этосамое", "какего",];
+var words = ["анастасия", "добрик", "андрей",];
 var randomWord = words[Math.floor(Math.random() * words.length)];
 function getRandomWord() {
    randomWord = words[Math.floor(Math.random() * words.length)];
