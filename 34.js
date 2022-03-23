@@ -15,6 +15,8 @@
    const heightInBlocks = height / blockSize;
    const score = 0;
 
+
+
    function drawBorder() {
       ctx.fillStyle = "#2B343A";
       ctx.fillRect(0, 0, width, blockSize);
@@ -56,7 +58,7 @@
          this.col = col;
          this.row = row;
       };
-      
+
       drawSquare(color) {
          let x = this.col * blockSize;
          let y = this.row * blockSize;
@@ -96,18 +98,35 @@
       move() {
          const head = this.segments[0];
          let newHead;
-
+         let keyActions = {
+            13: "enter",
+            16: "shift",
+            18: "alt",
+            32: "stop",
+            37: "left",
+            38: "up",
+            39: "right",
+            40: "down",
+         };
          this.direction = this.nextDirection;
 
-         if (this.direction === "right") {
-            newHead = new Block(head.col + 1, head.row);
-         } else if (this.direction === "down") {
-            newHead = new Block(head.col, head.row + 1);
-         } else if (this.direction === "left") {
-            newHead = new Block(head.col - 1, head.row);
-         } else if (this.direction === "up") {
-            newHead = new Block(head.col, head.row - 1);
-         }
+         $("body").keydown(function (event) {
+            this.direction = keyActions[event.keyCode];
+            if (this.direction !== undefined) {
+               if (this.direction === "right") {
+                  newHead = new Block(head.col + 1, head.row);
+               } else if (this.direction === "down") {
+                  newHead = new Block(head.col, head.row + 1);
+               } else if (this.direction === "left") {
+                  newHead = new Block(head.col - 1, head.row);
+               } else if (this.direction === "up") {
+                  newHead = new Block(head.col, head.row - 1);
+               }
+            }
+
+         });
+
+
 
          if (this.checkCollision(newHead)) {
             gameOver();
