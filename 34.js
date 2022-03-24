@@ -95,6 +95,12 @@
          }
       };
 
+      checkCollision(head) {
+         let leftCollision = (head.col === 0);
+         let topCollision = (head.row === 0);
+         let rightCo
+      }
+
       move() {
          const head = this.segments[0];
          let newHead;
@@ -112,6 +118,8 @@
 
          $("body").keydown(function (event) {
             this.direction = keyActions[event.keyCode];
+            console.log(this.direction);
+
             if (this.direction !== undefined) {
                if (this.direction === "right") {
                   newHead = new Block(head.col + 1, head.row);
@@ -142,6 +150,8 @@
             this.segments.pop();
          }
       };
+
+
    }
 
    const apple = new Block(2, 5);
@@ -154,6 +164,7 @@
       drawScore();
       snake.draw();
       head.equal(apple);
+      snake.move();
       head.drawSquare("LightBlue");
       apple.drawCircle("LightGreen");
       let requestId = requestAnimationFrame(loop);
