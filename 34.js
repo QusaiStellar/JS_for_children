@@ -94,15 +94,19 @@
             this.segments[i].drawSquare("Blue");
          }
       };
-
-      checkCollision(head) {
-         let leftCollision = (head.col === 0);
-         let topCollision = (head.row === 0);
-         let rightCo
-      }
-
+      /*
+            checkCollision(head) {
+               let leftCollision = (head.col === 0);
+               let topCollision = (head.row === 0);
+               let rightCollison = (head.row === width);
+               let bottomCollision = (head.col === height);
+               let wallCollison = leftCollision || topCollision || rightCollison || bottomCollision;
+               return wallCollison;
+      
+            }
+      */
       move() {
-         const head = this.segments[0];
+         let head = this.segments[0];
          let newHead;
          let keyActions = {
             13: "enter",
@@ -133,14 +137,12 @@
             }
 
          });
-
-
-
-         if (this.checkCollision(newHead)) {
-            gameOver();
-            return;
-         }
-
+         /*
+                  if (this.checkCollision(newHead)) {
+                     gameOver();
+                     return;
+                  }
+         */
          this.segments.unshift(newHead);
 
          if (newHead.equal(apple.position)) {
@@ -149,6 +151,7 @@
          } else {
             this.segments.pop();
          }
+
       };
 
 
