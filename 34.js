@@ -13,7 +13,7 @@
    const blockSize = 10;
    const widthInBlocks = width / blockSize;
    const heightInBlocks = height / blockSize;
-   const score = 0;
+   let score = 0;
 
 
 
@@ -45,13 +45,31 @@
    };
 
    function gameOver(requestId) {
-      cancelAnimationFrame(requestId);
+      clearInterval(requestId);
       ctx.font = "60px Courier";
       ctx.fillStyle = "Black";
       ctx.textAlign = "center";
       ctx.textBaseLine = "middle";
       ctx.fillText("Конец игры", width / 2, height / 2);
    };
+
+   let keyActions = {
+      13: "enter",
+      16: "shift",
+      18: "alt",
+      32: "stop",
+      37: "left",
+      38: "up",
+      39: "right",
+      40: "down",
+   };
+
+   $("body").keydown(function (event) {
+      newDirection = keyActions[event.keyCode];
+      if (newDirection !== undefined) {
+         snake.setDirection(newDirection);
+      }
+   });
 
    class Block {
       constructor(col, row) {
@@ -89,60 +107,70 @@
          this.nextDirection = "right";
       };
 
+
+
       draw() {
          for (let i = 0; i < this.segments.length; i++) {
             this.segments[i].drawSquare("Blue");
          }
       };
-      /*
-            checkCollision(head) {
-               let leftCollision = (head.col === 0);
-               let topCollision = (head.row === 0);
-               let rightCollison = (head.row === width);
-               let bottomCollision = (head.col === height);
-               let wallCollison = leftCollision || topCollision || rightCollison || bottomCollision;
-               return wallCollison;
-      
+
+      checkCollision(head) {
+
+         console.log(head.col);
+         console.log(head.row);
+         let leftCollision = (head.col === 0);
+         let topCollision = (head.row === 0);
+         let rightCollison = (head.row === width);
+         let bottomCollision = (head.col === height);
+
+         let wallCollison = leftCollision || topCollision || rightCollison || bottomCollision;
+         let selfCollision = false;
+
+         for (let i = 0; i < this.segments.length; i++) {
+            if (head.equal(this.segments[i])) {
+               selfCollision = true;
             }
-      */
+         }
+         return wallCollison || selfCollision;
+
+      };
+
+      setDirection() {
+         if (this.direction === "up" && newDirection === "down") {
+            return;
+         } else if (this.direction === "right" && newDirection === "left") {
+            return;
+         } else if (this.direction === "down" && newDirection === "up") {
+            return;
+         } else if (this.direction === "left" && newDirection === "right") {
+            return;
+         }
+
+         this.nextDirection = newDirection;
+      };
+
       move() {
          let head = this.segments[0];
          let newHead;
-         let keyActions = {
-            13: "enter",
-            16: "shift",
-            18: "alt",
-            32: "stop",
-            37: "left",
-            38: "up",
-            39: "right",
-            40: "down",
-         };
          this.direction = this.nextDirection;
 
-         $("body").keydown(function (event) {
-            this.direction = keyActions[event.keyCode];
-            console.log(this.direction);
+         if (this.direction === "right") {
+            newHead = new Block(head.col + 1, head.row);
+         } else if (this.direction === "down") {
+            newHead = new Block(head.col, head.row + 1);
+         } else if (this.direction === "left") {
+            newHead = new Block(head.col - 1, head.row);
+         } else if (this.direction === "up") {
+            newHead = new Block(head.col, head.row - 1);
+         }
 
-            if (this.direction !== undefined) {
-               if (this.direction === "right") {
-                  newHead = new Block(head.col + 1, head.row);
-               } else if (this.direction === "down") {
-                  newHead = new Block(head.col, head.row + 1);
-               } else if (this.direction === "left") {
-                  newHead = new Block(head.col - 1, head.row);
-               } else if (this.direction === "up") {
-                  newHead = new Block(head.col, head.row - 1);
-               }
-            }
 
-         });
-         /*
-                  if (this.checkCollision(newHead)) {
-                     gameOver();
-                     return;
-                  }
-         */
+         if (this.checkCollision(newHead)) {
+            gameOver();
+            return;
+         }
+
          this.segments.unshift(newHead);
 
          if (newHead.equal(apple.position)) {
@@ -157,23 +185,37 @@
 
    }
 
-   const apple = new Block(2, 5);
-   const head = new Block(3, 5);
-   const snake = new Snake();
+   class Apple {
+      constructor() {
+         this.position = new Block(10, 100);
+      };
 
-   function loop() {
+      draw() {
+         this.position.drawCircle("Black");
+      };
+
+      move() {
+         let randomCol = Math.floor(Math.random() * (widthInBlocks - 2)) + 1;
+         let randomRow = Math.floor(Math.random() * (heightInBlocks - 2)) + 1;
+         this.position = new Block(randomCol, randomRow);
+      };
+
+   };
+
+   let apple = new Apple();
+   let snake = new Snake();
+   apple.move();
+
+
+   let requestId = setInterval(function () {
       canvas.width |= 0;
       drawBorder();
       drawScore();
+      apple.draw();
       snake.draw();
-      head.equal(apple);
       snake.move();
-      head.drawSquare("LightBlue");
-      apple.drawCircle("LightGreen");
-      let requestId = requestAnimationFrame(loop);
-      //gameOver(requestId);
-   }
-   loop();
+   }, 100);
+
 
 
    window.addEventListener(`resize`, init);
